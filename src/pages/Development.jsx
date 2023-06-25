@@ -15,7 +15,7 @@ function Development() {
         <Link to="/">
           <button className="violetButton">
             <span>Go to Homepage</span>
-            <img className="arrow" src="/img/arrow.svg" />
+            <img className="arrow" src="/img/arrow.svg" alt="arrow" />
           </button>
         </Link>
       </div>

@@ -12,13 +12,25 @@ import { AppContext } from "./context";
 
 function App() {
   const [userAccount, setUserAccount] = useState(null);
+  const [isConnection, setConnection] = useState(false);
+
+  const onConnect = () => {
+    setConnection(true);
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((account) => setUserAccount(account[0]));
+    } else {
+      alert("Please install MetaMask");
+    }
+  };
 
   return (
-    <AppContext.Provider value={{ userAccount, setUserAccount }}>
+    <AppContext.Provider value={{ userAccount, onConnect, isConnection }}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/trade" element={<Trade />} />
+          <Route path="/trade/*" element={<Trade />} />
           <Route path="/finance" element={<Finance />} />
           <Route path="/nft" element={<Development />} />
           <Route path="/support" element={<Support />} />

@@ -7,12 +7,19 @@ export const Support = () => {
           <span>Answer will take about 5 hours</span>
         </div>
         <div className="inputArea">
-          <textarea
-            className="message"
-            placeholder="Enter your message here..."
-          >
-            {/* <img src="/img/send.svg" alt="send" /> */}
-          </textarea>
+          <div className="message">
+            <textarea
+              className="tarea"
+              placeholder="Enter your message here..."
+            ></textarea>
+            <img
+              height={27.63}
+              width={29}
+              src="/img/send.svg"
+              className="send"
+              alt="send"
+            />
+          </div>
         </div>
       </div>
     </div>

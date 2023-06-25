@@ -5,16 +5,8 @@ import { AppContext } from "../../context";
 import styles from "./Header.module.scss";
 
 function Header() {
-  const { userAccount, setUserAccount } = useContext(AppContext);
-  const onConnect = () => {
-    if (window.ethereum) {
-      window.ethereum
-        .request({ method: "eth_requestAccounts" })
-        .then((account) => setUserAccount(account[0]));
-    } else {
-      alert("Please install MetaMask");
-    }
-  };
+  const { userAccount, onConnect, isConnection } = useContext(AppContext);
+
   return (
     <header className="d-flex align-center">
       <div className={styles.logo}>
@@ -69,7 +61,11 @@ function Header() {
             )}
           </NavLink>
         </div>
-        <button onClick={onConnect} className={styles.metaButton}>
+        <button
+          onClick={onConnect}
+          disabled={isConnection}
+          className={styles.metaButton}
+        >
           {userAccount ? (
             <span>{userAccount}</span>
           ) : (
